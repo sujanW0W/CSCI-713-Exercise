@@ -29,6 +29,20 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Generate JaCoCo report
+      run: mvn jacoco:report
+    - name: Upload JaCoCo report
+      uses: actions/upload-artifact@v4
+      with:
+        name: JaCoCo report
+        path: target/site/jacoco/index.html
+    - name: Run PITest
+      run: mvn org.pitest:pitest-maven:mutationCoverage
+    - name: Upload PITest report
+      uses: actions/upload-artifact@v4
+      with:
+        name: PITest report
+        path: target/pit-reports/index.html
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
