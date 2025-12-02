@@ -65,8 +65,8 @@
                 <version>0.32</version>
                 <configuration>
                     <targetClasses>
-                        <param>**/Student*</param>
-                        <param>**/Utils*</param>
+                        <param>**/StudentService</param>
+                        <param>**/Utils</param>
                     </targetClasses>
                     <targetTests>
                         <param>**/*Test</param>

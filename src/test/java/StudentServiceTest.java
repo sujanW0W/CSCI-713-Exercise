@@ -34,52 +34,52 @@ class StudentServiceTest {
 
     @Test
     void testRemoveStudentByName() {
-        StudentService service = new StudentService()
+        StudentService service = new StudentService();
         Student s1 = new Student("Alice", 20, 3.5);
         Student s2 = new Student("Bob", 22, 3.9);
         Student s3 = new Student("Charlie", 19, 3.2);
         for(Student s: new Student[] {s1, s2, s3}){
-            service.addStudent(s)
+            service.addStudent(s);
         }
         
-        Student topStudentBeforeRemoval = service.getTopStudent() 
-        assertEquals("Bob", top.getName())
+        Student topStudentBeforeRemoval = service.getTopStudent();
+        assertEquals("Bob", topStudentBeforeRemoval.getName());
         
-        service.removeStudentByName("Bob")
+        service.removeStudentByName("Bob");
         
-        Student topStudentAfterRemoval = service.getTopStudent()
-        assertEquals("Alice", topStudentAfterRemoval.getName())
+        Student topStudentAfterRemoval = service.getTopStudent();
+        assertEquals("Alice", topStudentAfterRemoval.getName());
     }
 
     @Test
     void testValidName() {
-        Utils utils = new Utils()
-        String name = "Tanjiro"
-        Boolean isValid = utils.checkName(name)
-        assertTrue(isValid)
+        Utils utils = new Utils();
+        String name = "Tanjiro";
+        Boolean isValid = utils.checkName(name);
+        assertTrue(isValid);
     }
 
     @Test
     void testInvalidName() {
-        Utils utils = new Utils()
-        String name = ""
-        Boolean isValid = utils.checkName(name)
-        assertFalse(isValid)
+        Utils utils = new Utils();
+        String name = "";
+        Boolean isValid = utils.checkName(name);
+        assertFalse(isValid);
     }
 
     @Test
     void testValidAge() {
-        Utils utils = new Utils()
-        int age = 25
-        Boolean isValid = utils.isValidAge(age)
-        assertTrue(isValid)
+        Utils utils = new Utils();
+        int age = 25;
+        Boolean isValid = utils.isValidAge(age);
+        assertTrue(isValid);
     }
 
     @Test
     void testInvalidAge() {
-        Utils utils = new Utils()
-        int age = -25
-        Boolean isValid = utils.isValidAge(age)
-        assertFalse(isValid)
+        Utils utils = new Utils();
+        int age = -25;
+        Boolean isValid = utils.isValidAge(age);
+        assertFalse(isValid);
     }
 }
