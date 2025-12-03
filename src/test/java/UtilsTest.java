@@ -20,6 +20,21 @@ class UtilsTest {
     }
 
     @Test
+    void testCheckNameWithSingleCharacter() {
+        Utils utils = new Utils();
+        Boolean isValid = utils.checkName("A");
+        assertTrue(isValid);
+    }
+
+    @Test
+    void testCheckNameWithWhitespace() {
+        Utils utils = new Utils();
+        // Note: " " has length > 0, so it will return true (potential bug)
+        Boolean isValid = utils.checkName(" ");
+        assertTrue(isValid);
+    }
+
+    @Test
     void testNullName() {
         Utils utils = new Utils();
         String name = null;
@@ -57,5 +72,12 @@ class UtilsTest {
         int age = 150;
         Boolean isValid = utils.isValidAge(age);
         assertTrue(isValid);
+    }
+
+    @Test
+    void testIsValidAgeWithMinInteger() {
+        Utils utils = new Utils();
+        Boolean isValid = utils.isValidAge(Integer.MIN_VALUE);
+        assertFalse(isValid);
     }
 }

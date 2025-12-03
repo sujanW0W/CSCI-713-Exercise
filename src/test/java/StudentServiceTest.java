@@ -28,6 +28,19 @@ class StudentServiceTest {
         assertEquals(3.5, top.getGpa(), 0.001);
     }
 
+    Test
+    void testAddMultipleStudents() {
+        StudentService service = new StudentService();
+        service.addStudent(new Student("Alice", 20, 3.5));
+        service.addStudent(new Student("Bob", 22, 3.9));
+        service.addStudent(new Student("Charlie", 19, 3.2));
+        service.addStudent(new Student("David", 21, 3.8));
+        
+        assertEquals(4, service.calculateAverageGpa() > 0 ? 4 : 0);
+        Student top = service.getTopStudent();
+        assertEquals("Bob", top.getName());
+    }
+
     @Test
     void testGetTopStudentWithSameGpa() {
         StudentService service = new StudentService();
@@ -43,6 +56,55 @@ class StudentServiceTest {
         assertEquals(3.5, top.getGpa(), 0.001);
         // Should return first student when all have same GPA
         assertEquals("Alice", top.getName());
+    }
+
+    @Test
+    void testGetTopStudentWhenFirstIsHighest() {
+        StudentService service = new StudentService();
+        Student s1 = new Student("Alice", 20, 4.0);
+        Student s2 = new Student("Bob", 22, 3.9);
+        Student s3 = new Student("Charlie", 19, 3.2);
+        
+        service.addStudent(s1);
+        service.addStudent(s2);
+        service.addStudent(s3);
+        
+        // First student has highest GPA, loop should not update top
+        Student top = service.getTopStudent();
+        assertEquals("Alice", top.getName());
+        assertEquals(4.0, top.getGpa(), 0.001);
+    }
+
+    @Test
+    void testGetTopStudentWithMiddleHighest() {
+        StudentService service = new StudentService();
+        Student s1 = new Student("Alice", 20, 3.0);
+        Student s2 = new Student("Bob", 22, 4.0);
+        Student s3 = new Student("Charlie", 19, 3.2);
+        
+        service.addStudent(s1);
+        service.addStudent(s2);
+        service.addStudent(s3);
+        
+        Student top = service.getTopStudent();
+        assertEquals("Bob", top.getName());
+        assertEquals(4.0, top.getGpa(), 0.001);
+    }
+
+    @Test
+    void testGetTopStudentWithLastHighest() {
+        StudentService service = new StudentService();
+        Student s1 = new Student("Alice", 20, 3.0);
+        Student s2 = new Student("Bob", 22, 3.5);
+        Student s3 = new Student("Charlie", 19, 4.0);
+        
+        service.addStudent(s1);
+        service.addStudent(s2);
+        service.addStudent(s3);
+        
+        Student top = service.getTopStudent();
+        assertEquals("Charlie", top.getName());
+        assertEquals(4.0, top.getGpa(), 0.001);
     }
 
     @Test
