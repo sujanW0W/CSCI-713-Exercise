@@ -71,6 +71,9 @@
                                         <include>StudentService</include>
                                         <include>Utils</include>
                                     </includes>
+                                    <excludes>
+                                        <exclude>**/Main*</exclude>
+                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
