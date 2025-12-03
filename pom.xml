@@ -67,13 +67,6 @@
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
-                                    <includes>
-                                        <include>StudentService</include>
-                                        <include>Utils</include>
-                                    </includes>
-                                    <excludes>
-                                        <exclude>**/Main*</exclude>
-                                    </excludes>
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
@@ -88,6 +81,11 @@
                                     </limits>
                                 </rule>
                             </rules>
+                        </configuration>
+                        <configuration>
+                            <excludes>
+                                <exclude>**/*Main.*</exclude>
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
