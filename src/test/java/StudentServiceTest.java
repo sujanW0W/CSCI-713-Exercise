@@ -28,7 +28,7 @@ class StudentServiceTest {
         assertEquals(3.5, top.getGpa(), 0.001);
     }
 
-    Test
+    @Test
     void testAddMultipleStudents() {
         StudentService service = new StudentService();
         service.addStudent(new Student("Alice", 20, 3.5));
