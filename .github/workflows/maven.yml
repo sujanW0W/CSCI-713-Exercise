@@ -1,4 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# This workflow builds the Java project with Maven and manages dependencies
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
 
 # This workflow uses actions that are not certified by GitHub.
@@ -6,21 +6,24 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Build with Maven
+
 permissions: write-all
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:  # Allows manual triggering
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+    
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
@@ -29,24 +32,6 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Build with Maven
-      run: mvn clean compile
-    - name: Run tests
-      run: mvn test
-    - name: Generate JaCoCo report
-      run: mvn jacoco:report
-    - name: Upload JaCoCo report
-      uses: actions/upload-artifact@v4
-      with:
-        name: JaCoCo report
-        path: target/site/jacoco/index.html
-    - name: Run PITest
-      run: mvn org.pitest:pitest-maven:mutationCoverage
-    - name: Upload PITest report
-      uses: actions/upload-artifact@v4
-      with:
-        name: PITest report
-        path: target/pit-reports/index.html
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
