@@ -64,6 +64,9 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>**/*Main.*</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>CLASS</element>
@@ -81,11 +84,6 @@
                                     </limits>
                                 </rule>
                             </rules>
-                        </configuration>
-                        <configuration>
-                            <excludes>
-                                <exclude>**/*Main.*</exclude>
-                            </excludes>
                         </configuration>
                     </execution>
                 </executions>
