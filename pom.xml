@@ -58,6 +58,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <includes>
+                        <include>StudentService.class</include>
+                        <include>Utils.class</include>
+                    </includes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.pitest</groupId>
