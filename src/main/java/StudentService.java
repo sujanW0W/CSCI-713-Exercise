@@ -36,7 +36,6 @@ public class StudentService {
         }
     }
 
-    // Unused method (code smell)
     public void removeStudentByName(String name) {
         for (Student s : students) {
             if (s.getName().equals(name)) {

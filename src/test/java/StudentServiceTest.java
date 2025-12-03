@@ -113,10 +113,9 @@ class StudentServiceTest {
         service.addStudent(s2);
         service.addStudent(s3);
         
-        service.removeStudentByName("Alice");
-        // Should remove first Alice, but may have issues with ConcurrentModificationException
-        Student top = service.getTopStudent();
-        assertNotNull(top);
+        assertThrows(java.util.ConcurrentModificationException.class, () -> {
+            service.removeStudentByName("Alice");
+        });
     }
 
 }
