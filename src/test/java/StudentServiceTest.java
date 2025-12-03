@@ -71,6 +71,17 @@ class StudentServiceTest {
     }
 
     @Test
+    void testCalculateAverageGpaWithDifferentGpas() {
+        StudentService service = new StudentService();
+        service.addStudent(new Student("Alice", 20, 3.0));
+        service.addStudent(new Student("Bob", 22, 4.0));
+        service.addStudent(new Student("Charlie", 19, 3.5));
+        
+        double avg = service.calculateAverageGpa();
+        assertEquals(3.5, avg, 0.001);
+    }
+
+    @Test
     void testRemoveStudentByName() {
         StudentService service = new StudentService();
         Student s1 = new Student("Alice", 20, 3.5);
