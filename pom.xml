@@ -59,13 +59,17 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <includes>
+                        <include>**/StudentService.class</include>
+                        <include>**/Utils.class</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/Student.class</exclude>
+                        <exclude>**/Main.class</exclude>
+                    </excludes>
                     <rules>
                         <rule>
                             <element>CLASS</element>
-                            <includes>
-                                <include>StudentService</include>
-                                <include>Utils</include>
-                            </includes>
                             <limits>
                                 <limit>
                                     <counter>LINE</counter>

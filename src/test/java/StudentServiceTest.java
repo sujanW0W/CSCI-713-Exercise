@@ -175,6 +175,31 @@ class StudentServiceTest {
         assertEquals("Alice", top.getName());
     }
 
+    @Test
+    void testRemoveStudentByNameFromEmptyList() {
+        StudentService service = new StudentService();
+        // Should not throw exception, just do nothing
+        assertDoesNotThrow(() -> service.removeStudentByName("Alice"));
+        double avg = service.calculateAverageGpa();
+        assertEquals(0.0, avg, 0.001);
+    }
+
+    @Test
+    void testRemoveStudentByNameNoMatchInNonEmptyList() {
+        StudentService service = new StudentService();
+        service.addStudent(new Student("Alice", 20, 3.5));
+        service.addStudent(new Student("Bob", 22, 3.9));
+        
+        // Remove non-existent name - should iterate through all but not remove
+        service.removeStudentByName("Charlie");
+        
+        // Both students should still be there
+        Student top = service.getTopStudent();
+        assertEquals("Bob", top.getName());
+        double avg = service.calculateAverageGpa();
+        assertEquals(3.7, avg, 0.001);
+    }
+
      @Test
     void testRemoveStudentByNameMultipleMatches() {
         StudentService service = new StudentService();
